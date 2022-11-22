@@ -32,7 +32,7 @@ pokemonRouter.post('/', async(req, res) => {
         if( !name || !hp || !attack || !defense || !speed || !height || !weight || !types || !image) throw new Error("Faltan argumentos para crear el Pokemon");
         const newPokemon = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image });
         newPokemon.addTypes(types)
-        res.status(201).json(newPokemon);
+        res.status(201).json({message: `El pokemon ${name} fue creado con exito`, created: true});
     } catch (error) {
         res.status(400).json(error.message);
     }
@@ -41,7 +41,7 @@ pokemonRouter.post('/', async(req, res) => {
 pokemonRouter.delete('/', async(req, res) => {
     try {
         const { id } = req.body;
-        if(!id) throw new Error("No se recibidio ningun id")
+        if(!id) throw new Error("No se recibio ningun id")
         const deletePokemon = await detelePokemon(id)
         res.status(200).json(deletePokemon);
     } catch (error) {

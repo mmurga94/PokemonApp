@@ -1,0 +1,49 @@
+.container{
+    min-width: 50%;;
+}
+.card{
+    display: flex;
+    height: 326px;
+    min-width: 50%;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.card img{
+    background: aliceblue;
+    width: 40%;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.card h1{
+    margin-bottom: 0rem;
+    text-align: left;
+}
+
+.card h5{
+    text-align: left;
+    margin: 0rem;
+}
+
+.types{
+    margin-top: 0rem;
+    text-align: left;
+}
+
+.type{
+    margin: 0rem;
+    margin-right: 1rem;
+}
+
+.infoCard{
+    width: 100%;
+    background: blueviolet;
+    padding-left: 1rem;
+    color: white;
+}
+
+.infoCard p{
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,35 @@
+.container{
+    width: 80%;
+    margin-top: 1rem;
+}
+
+.pokemonSection{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.sectionButtons{
+    margin-bottom: 1rem;
+}
+
+.paginationButtons{
+    border: none;
+    background: #f8f8f8;
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+}
+
+.paginationButtonsActive{
+    border: none;
+    background: #e75353;
+    color: #fff;
+    height: 3rem;
+    width: 3rem;
+}
+
+.paginationButtons:hover{
+    background-color: #e0e0e0;
+}
