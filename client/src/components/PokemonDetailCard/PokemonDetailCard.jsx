@@ -1,7 +1,7 @@
 import style from '../PokemonDetailCard/PokemonDetailCard.module.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { deletePokemonById, getAllPokemons, cleanPokemonDetail }from '../../redux/actions/index';
+import { deletePokemonById, getAllPokemons, cleanPokemonDetail, loading }from '../../redux/actions/index';
 import { NavLink } from 'react-router-dom';
 
 export default function PokemonDetailCard({image, name, types, id, hp, attack, defense, speed, height, weight, created}){
@@ -19,6 +19,10 @@ export default function PokemonDetailCard({image, name, types, id, hp, attack, d
         dispatch(getAllPokemons());
     }
 
+    function updatePokemon(){
+        dispatch(loading())
+    }
+
     return(
         <div className={style.container}>
             <div className={style.card}>
@@ -27,17 +31,29 @@ export default function PokemonDetailCard({image, name, types, id, hp, attack, d
                     <h1>{name && name.toUpperCase()}</h1>
                     {id && <h5>ID: {id.toUpperCase()}</h5>}
                     <p className={style.types} > {types && types.map((type, index) => <span className={style.type} key={index}>{type && type[0].toUpperCase() + type.slice(1)}</span>)}</p>
-                    <section>
-                        <p>Altura: {height}</p>
-                        <p>Peso: {weight}</p>
-                        <p>Vida: {hp}</p>
-                        <p>Ataque: {attack}</p>
-                        <p>Defensa: {defense}</p>
-                        <p>Velocidad: {speed}</p>
+                    <section className={style.stats}>
+                        <div>
+                            <p className={style.statsDescription}>Height: {height}</p> <p>Weight: {weight}</p> 
+                        </div>
+                        <div>
+                            <p className={style.statsDescription}>HP: {hp} </p> <progress max={200} value={hp} >Vida</progress>
+                        </div>
+                        <div>
+                            <p className={style.statsDescription} >Attack: {attack}</p> <progress max={200} value={attack} >Ataque</progress>
+                        </div>
+                        <div>
+                            <p className={style.statsDescription}>Defense: {defense}</p> <progress max={200} value={defense} >Defensa</progress>
+                        </div>
+                        <div>
+                            <p className={style.statsDescription}>Speed: {speed}</p> <progress max={200} value={speed} >Velocidad</progress>
+                        </div>
                     </section>
                 </section>
             </div>
-            {created && <NavLink to='/home/delete' onClick={deletePokemon}>Eliminar</NavLink>}
+            <section className={style.buttons}>
+                {created && <NavLink to={`/home/update/${id}`} onClick={updatePokemon}>Update</NavLink>}
+                {created && <NavLink to='/home/delete' onClick={deletePokemon}>Delete</NavLink>}
+            </section>
         </div>
     )
 }

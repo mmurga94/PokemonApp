@@ -51,10 +51,10 @@ pokemonRouter.delete('/', async(req, res) => {
 
 pokemonRouter.put('/', async(req, res) => {
     try {
-        const { id, attribute, value } = req.body;
-        if(!id || !attribute || !value) throw new Error("Faltan atributos")
-        const pokemonUpdated = await updatePokemon(id, attribute, value);
-        res.status(200).json(pokemonUpdated);
+        const { id, name, hp, attack, defense, speed, height, weight, types, image } = req.body;
+        if(!id || !name || !hp || !attack || !defense || !speed || !height || !weight || !types || !image) throw new Error("Faltan atributos")
+        const pokemonUpdated = await updatePokemon(id, name, hp, attack, defense, speed, height, weight, types, image);
+        res.status(200).json({message: `The pokemon ${pokemonUpdated.name} was updated`, updated: true});
     } catch (error) {
         res.status(400).json(error.message);
     }

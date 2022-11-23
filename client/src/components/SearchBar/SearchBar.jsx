@@ -23,7 +23,7 @@ export default function SearchBar(){
     return(
         <div className={style.searchbar}>
             <form  className={style.form} >
-                <input className={style.input} type="text" value={form} onChange={(e) => handleFormValue(e)}  placeholder='Buscar por nombre' />
+                <input className={style.input} type="text" value={form} onChange={(e) => handleFormValue(e)}  placeholder='Search by name' />
                 <NavLink className={style.button} to='/home' onClick={(e) => searchByName(e)}>
                     <img className={style.image} src={image} alt="" />
                 </NavLink>

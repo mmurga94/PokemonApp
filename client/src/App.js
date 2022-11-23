@@ -6,6 +6,7 @@ import PokemonDetail from './components/PokemonDetail/PokemonDetail';
 import NavBar from './components/NavBar/NavBar';
 import CreatePokemon from './components/CreatePokemon/CreatePokemon';
 import DeletePokemon from './components/DeletePokemon/DeletePokemon';
+import UpdatePokemon from './components/UpdatePokemon/UpdatePokemon';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route exact path='/home' render={() => <Home/> } />
       <Route path='/home/pokemon/:id' render={() => <PokemonDetail />} />
       <Route path='/home/delete' render={() => <DeletePokemon />} />
+      <Route path='/home/update/:id' render={() => <UpdatePokemon />} />
     </div>
   );
 }

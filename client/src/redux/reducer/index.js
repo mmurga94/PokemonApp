@@ -1,9 +1,10 @@
-import { GET_ALL_POKEMONS, GET_POKEMON_DETAIL, GET_POKEMON_BY_NAME, GET_ALL_TYPES, CREATE_POKEMON, SET_FILTRO, CLEAN_FILTRO, LOADING, ERROR, CLEAN_ERROR, CLEAN_CREATE_POKEMON, DELETE_POKEMON, CLEAN_DELETE_POKEMON, CLEAN_POKEMON_DETAIL } from "../actions";
+import { GET_ALL_POKEMONS, GET_POKEMON_DETAIL, GET_POKEMON_BY_NAME, GET_ALL_TYPES, CREATE_POKEMON, SET_FILTRO, CLEAN_FILTRO, LOADING, ERROR, CLEAN_ERROR, CLEAN_CREATE_POKEMON, DELETE_POKEMON, CLEAN_DELETE_POKEMON, CLEAN_POKEMON_DETAIL, UPDATE_POKEMON, CLEAN_UPDATE_POKEMON } from "../actions";
 
 const initialState = {
     pokemons: [],
     pokemonDetail: {},
     newPokemon: {message: '', created: false},
+    updatedPokemon: {message: '', updated: false},
     types: [],
     filtro: {origen: 'filtrar', type: 'todos', ordenado: 'null'},
     loading: false,
@@ -52,6 +53,16 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 newPokemon: action.payload  
+            }
+        case UPDATE_POKEMON:
+            return{
+                ...state,
+                updatedPokemon: action.payload
+            }
+        case CLEAN_UPDATE_POKEMON:
+            return{
+                ...state,
+                updatedPokemon: action.payload.data
             }
         case DELETE_POKEMON:
             return{

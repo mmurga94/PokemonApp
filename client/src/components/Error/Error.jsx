@@ -13,7 +13,6 @@ export default function Error({message}){
     }
 
     function handleCleanError(){
-        dispatch(cleanError());
         dispatch(cleanFiltro());
     }
 

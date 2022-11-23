@@ -106,23 +106,11 @@ const detelePokemon = async (id) => {
     return {message: `${pokemon.name} fue eliminado`, image: pokemon.image};
 }
 
-const updatePokemon = async (id, attribute, value) => {
-    let pokemon;
-    if(attribute === "types"){
-        pokemon = await Pokemon.findByPk(id);
-        if(!pokemon) throw new Error("No se encontro ningun pokemon con ese id")
-        await pokemon.setTypes(value)
-    }else{
-        pokemon = await Pokemon.update(
-            {
-                [attribute]: value
-            },
-            {
-                where: { id: id }
-            }
-        )
-        if(pokemon[0] === 0) throw new Error("No se encontro ningun pokemon con ese id")
-    }
+const updatePokemon = async (id, name, hp, attack, defense, speed, height, weight, types, image) => {
+    let  pokemon = await Pokemon.findByPk(id);
+    if(!pokemon) throw new Error("No se encontro ningun pokemon con ese id")
+    await pokemon.update({name, hp, attack, defense, speed, height, weight, image})
+    await pokemon.setTypes(types)
     return pokemon
 }
 

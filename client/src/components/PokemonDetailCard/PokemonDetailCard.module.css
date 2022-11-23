@@ -9,6 +9,31 @@
     overflow: hidden;
 }
 
+.infoCard p{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: .5rem;
+}
+
+.infoCard div{
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.stats p{
+    margin: 0;
+    margin-right: 1rem;
+}
+
+.stats progress{
+    width: 55%;
+}
+
+.statsDescription{
+    width: 30%;
+}
+
 .card img{
     background: aliceblue;
     width: 40%;
@@ -24,6 +49,7 @@
 .card h5{
     text-align: left;
     margin: 0rem;
+    margin-top: .5rem;
 }
 
 .types{
@@ -43,7 +69,23 @@
     color: white;
 }
 
-.infoCard p{
+.buttons{
+    margin-top: 1rem;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.buttons a{
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    width: 20%;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.buttons a:hover{
+    background-color: #1C1B1A;
+    color: white;
 }

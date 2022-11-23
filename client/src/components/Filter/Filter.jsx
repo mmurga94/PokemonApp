@@ -24,7 +24,7 @@ export default function Filter(){
         })
         return(
             <select className={style.select} name='type' value={filtro.type} onChange={(e) => setFiltroOption(e)}>
-                <option value="filtrar">Filtrar por tipo</option>
+                <option value="filtrar">Filter by type</option>
                 {options}
             </select>
         )
@@ -37,20 +37,20 @@ export default function Filter(){
     return(
         <div className={style.container}>
             <select className={style.select} name="origen" id="" value={filtro.origen} onChange={(e) => setFiltroOption(e)}>
-                <option value="filtrar">Filtrar por origen</option>
-                <option value="api">Api</option>
-                <option value="creado">Creado</option>
-                <option value="todos">Todos</option>
+                <option value="filtrar">Filter by origin</option>
+                <option value="api">API</option>
+                <option value="creado">Created</option>
+                <option value="todos">All</option>
             </select>
             {types && showTypesOptions()}
             <select className={style.select} name="ordenado" id="" value={filtro.ordenado} onChange={(e) => setFiltroOption(e)}>
-                <option value="null">Ordenar por</option>
+                <option value="null">Sort by</option>
                 <option value="nommbreAscendente">A-Z</option>
                 <option value="nombreDescendente">Z-A</option>
-                <option value="ataqueAscendente">Ataque de menor a mayor</option>
-                <option value="ataqueDescendente">Ataque de mayor a menor</option>
+                <option value="ataqueAscendente">Attack: Low to High</option>
+                <option value="ataqueDescendente">Attack: High to Low</option>
             </select>
-            <button className={style.button} onClick={cleanFilters}>Limpiar filtros</button>
+            <button className={style.button} onClick={cleanFilters}>Clean Filters</button>
         </div>
     )
 }

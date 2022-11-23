@@ -12,8 +12,9 @@ export const ERROR = 'ERROR';
 export const CLEAN_ERROR = 'CLEAN_ERROR';
 export const CLEAN_CREATE_POKEMON = 'CLEAN_CREATE_POKEMON';
 export const DELETE_POKEMON = 'DELETE_POKEMON';
-export const CLEAN_DELETE_POKEMON = 'CLEAN_DELETE_POKEMON'
-
+export const CLEAN_DELETE_POKEMON = 'CLEAN_DELETE_POKEMON';
+export const UPDATE_POKEMON = 'UPDATE_POKEMON';
+export const CLEAN_UPDATE_POKEMON = 'CLEAN_UPDATE_POKEMON';
 
 export const getAllPokemons = () => {
     return async function(dispatch){
@@ -71,6 +72,21 @@ export const createPokemon = (newPokemon) => {
             console.log(error)
         }
     }
+}
+
+export const updatePokemon = (pokemon) => {
+    return async function(dispatch){
+        try {
+            const { data } = await axios.put('http://localhost:3001/pokemon/', pokemon)
+            dispatch({ type: UPDATE_POKEMON, payload: data})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const cleanUpdatePokemon = () => {
+    return { type: CLEAN_UPDATE_POKEMON, payload: {data: {message: '', updated: false} }}
 }
 
 export const deletePokemonById = id => {

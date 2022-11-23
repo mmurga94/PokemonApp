@@ -17,7 +17,9 @@ export default function CreatePokemon(){
 
     useEffect(() => {
         dispatch(getAllTypes());
-
+        if(pokemons.length === 0){
+            dispatch(getAllPokemons());
+        }
         return () => {
         dispatch(cleanCreatePokemon());
         }
@@ -56,10 +58,10 @@ export default function CreatePokemon(){
         }
 
         const includesName = pokemons.find(pokemon => pokemon.name.toUpperCase() === e.target.value.toUpperCase());
-        if(includesName) setError(error = {...error, name: 'Ya existe un pokemon con ese nombre'});
+        if(includesName) setError(error = {...error, name: `There is already a pokemon with the name ${pokemon.name}`});
 
         if(e.target.type === 'number'){
-            if(e.target.value > 100 || e.target.value < 1) setError(error = {...error, [e.target.name]: 'El valor debe ser entre 0 y 100'});
+            if(e.target.value > 200 || e.target.value < 1) setError(error = {...error, [e.target.name]: 'The value must be between 0 and 201'});
             else setError(error = {...error, [e.target.name]: ''})
         }
 
@@ -96,14 +98,14 @@ export default function CreatePokemon(){
     return(
         <div className={style.container}>
             <form  className={style.form} action="" onSubmit={(e) => createNewPokemon(e) }>
-                <h1>Crear Pokemon</h1>
+                <h1>Create Pokemon</h1>
 
                 {screen.first && (
                 <div className={style.screen}>
                     <section className={style.inputContainer}>
                         <section className={style.inputContainerData}>
                             <label className={error.name ? style.labelError : style.label} htmlFor="">Name </label>
-                            <input className={error.name ? style.inputError : style.input} type="text" name="name" value={pokemon.name} onChange={(e) => setNewPokemon(e)} placeholder='Ingresa el nombre del pokemon' />
+                            <input className={error.name ? style.inputError : style.input} type="text" name="name" value={pokemon.name} onChange={(e) => setNewPokemon(e)} placeholder='Enter the name of the pokemon' />
                         </section>
                         { error.name && <p>{error.name}</p> }
                     </section>
@@ -111,7 +113,7 @@ export default function CreatePokemon(){
                     <section className={style.inputContainer}>
                         <section className={style.inputContainerData}>
                             <label className={error.image ? style.labelError : style.label} htmlFor="">Image</label>
-                            <input className={error.image ? style.inputError : style.input} type="text" name="image" value={pokemon.image} onChange={(e) => setNewPokemon(e)}  placeholder='Ingresa el URL de la imagen' />
+                            <input className={error.image ? style.inputError : style.input} type="text" name="image" value={pokemon.image} onChange={(e) => setNewPokemon(e)}  placeholder='Enter the pokemon image in URL' />
                         </section>
                         {error.image && <p>{error.image}</p>}
                     </section>
@@ -165,7 +167,7 @@ export default function CreatePokemon(){
                         {error.speed && <p>{error.speed}</p>}
                     </section>
 
-                    <button onClick={(e) => showScreen(e)} value='second' disabled={ disabled ? true: false} >Siguiente</button>
+                    <button onClick={(e) => showScreen(e)} value='second' disabled={ disabled ? true: false} >Next</button>
                 </div>
                 )}
 
@@ -174,7 +176,7 @@ export default function CreatePokemon(){
                     <label className={error.types !== 'Select the types' ? style.labelErrorTypes : style.labelTypes} htmlFor=""> {error.types} </label>
                     <div className={style.types}>{displayTypes()}</div>
                     <div className={style.buttonContainer}>
-                        <button onClick={(e) => showScreen(e)} value='first' >Atras</button>
+                        <button onClick={(e) => showScreen(e)} value='first' >Previous</button>
                         <button type="submit" disabled={ pokemon.types.length >= 3 || pokemon.types.length <= 0 }>Create Pokemon</button>
                     </div>
                 </div>
